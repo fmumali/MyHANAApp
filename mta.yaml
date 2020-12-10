@@ -22,6 +22,7 @@ modules:
           url: '${default-url}'
     requires:
       - name: MyHANAApp-db-hdi-container
+      - name: app-uaa
   - name: web
     type: html5
     path: web
@@ -32,8 +33,13 @@ modules:
           name: srv_api
           url: '~{url}'
           forwardAuthToken: true
+      - name: app-uaa
 resources:
   - name: MyHANAApp-db-hdi-container
     type: com.sap.xs.hdi-container
     properties:
       hdi-container-name: '${service-name}'
+  - name: app-uaa
+    type: com.sap.xs.uaa-space
+    parameters:
+      path: xs-security.json
